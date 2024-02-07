@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:my_personal_portfolio/res/utils/app_assets.dart';
@@ -70,77 +71,103 @@ class _HomeViewState extends State<HomeView> {
         child: Padding(
           padding: EdgeInsets.only(
               top: size.height * .03,
-              left: size.width * .03,
-              right: size.width * .03),
+              left: size.width * .01,
+              right: size.width * .01),
           child: Column(
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Hello, It\'s Me',
-                        style:
-                            AppTextStyle.monteseratStyle(color: Colors.white),
+                      FadeInDown(
+                        duration: const Duration(microseconds: 1200),
+                        child: Text(
+                          'Hello, It\'s Me',
+                          style:
+                              AppTextStyle.monteseratStyle(color: Colors.white),
+                        ),
                       ),
                       const SizedBox(
                         height: 15,
                       ),
-                      Text(
-                        'Muhammad Kashif',
-                        style: AppTextStyle.headingStyle(),
+                      FadeInRight(
+                        duration: const Duration(microseconds: 1400),
+                        child: Text(
+                          'Muhammad Kashif',
+                          style: AppTextStyle.headingStyle(),
+                        ),
                       ),
                       const SizedBox(
                         height: 15,
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            'And I\'m a ',
-                            style: AppTextStyle.monteseratStyle(
-                                color: Colors.white),
-                          ),
-                          AnimatedTextKit(animatedTexts: [
-                            TyperAnimatedText(
-                              'Flutter Developer',
-                              textStyle: AppTextStyle.monteseratStyle(
-                                  color: Colors.lightBlue),
+                      FadeInLeft(
+                        duration: const Duration(microseconds: 1600),
+                        child: Row(
+                          children: [
+                            Text(
+                              'And I\'m a ',
+                              style: AppTextStyle.monteseratStyle(
+                                  color: Colors.white),
                             ),
-                            TyperAnimatedText(
-                              'Software Engineer',
-                              textStyle: AppTextStyle.monteseratStyle(
-                                  color: Colors.lightBlue),
-                            ),
-                          ]),
-                        ],
+                            AnimatedTextKit(animatedTexts: [
+                              TyperAnimatedText(
+                                'Flutter Developer',
+                                textStyle: AppTextStyle.monteseratStyle(
+                                    color: Colors.lightBlue),
+                              ),
+                              TyperAnimatedText(
+                                'Software Engineer',
+                                textStyle: AppTextStyle.monteseratStyle(
+                                    color: Colors.lightBlue),
+                              ),
+                            ]),
+                          ],
+                        ),
                       ),
                       const SizedBox(height: 15),
-                      SizedBox(
-                        width: size.width*0.5,
-                        child: Text(
-                          "In publishing and graphic design, Lorem ipsum is a placeholder"
-                          'text commonly used to demonstrate the visual form of a document'
-                              ' or a typeface without relying on meaningful content."',
-                          style: AppTextStyle.normalStyle(),
+                      FadeInDown(
+                        duration: const Duration(microseconds: 1400),
+                        child: SizedBox(
+                          width: size.width * 0.5,
+                          child: Text(
+                            "In publishing and graphic design, Lorem ipsum is a placeholder"
+                            'text commonly used to demonstrate the visual form of a document'
+                            ' or a typeface without relying on meaningful content."',
+                            style: AppTextStyle.normalStyle(),
+                          ),
                         ),
                       ),
                       const SizedBox(height: 22),
-                      Row(
-                        children: [
-                          buildSocialButton(assets: AppAssets.facebook),
-                          Constants.sizedBox(width: 10),
-                          buildSocialButton(assets: AppAssets.twitter),
-                          Constants.sizedBox(width: 10),
-                          buildSocialButton(assets: AppAssets.linkedIn),
-                          Constants.sizedBox(width: 10),
-                          buildSocialButton(assets: AppAssets.insta),
-                          Constants.sizedBox(width: 10),
-                          buildSocialButton(assets: AppAssets.github),
-                        ],
-                      )
+                      FadeInUp(
+                        duration: const Duration(microseconds: 1600),
+                        child: Row(
+                          children: [
+                            buildSocialButton(assets: AppAssets.facebook),
+                            Constants.sizedBox(width: 10),
+                            buildSocialButton(assets: AppAssets.twitter),
+                            Constants.sizedBox(width: 10),
+                            buildSocialButton(assets: AppAssets.linkedIn),
+                            Constants.sizedBox(width: 10),
+                            buildSocialButton(assets: AppAssets.insta),
+                            Constants.sizedBox(width: 10),
+                            buildSocialButton(assets: AppAssets.github),
+                          ],
+                        ),
+                      ),
+                      Constants.sizedBox(height: 18),
+                      FadeInUp(
+                          duration: const Duration(microseconds: 1800),
+                          child: buildMaterialButton(onTap: () {})),
                     ],
-                  )
+                  ),
+                  const SizedBox(width: 30,),
+                  Image.network(AppAssets.personal1,
+                  width: 360,
+                    height: 390,
+                  ),
                 ],
               )
             ],
@@ -149,20 +176,40 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   }
+
+  MaterialButton buildMaterialButton({required VoidCallback onTap}) {
+    return MaterialButton(
+      height: 45,
+      minWidth: 130,
+      elevation: 6,
+      color: AppColors.themeColor,
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      shape: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(30),
+        borderSide: BorderSide.none,
+      ),
+      onPressed: onTap,
+      child: Text(
+        'Download CV',
+        style: AppTextStyle.headerTextStyle(),
+      ),
+    );
+  }
+
   CircleAvatar buildSocialButton({required String assets}) {
     return CircleAvatar(
-      maxRadius: 22,
+      maxRadius: 20,
       backgroundColor: AppColors.themeColor,
       child: CircleAvatar(
-        maxRadius: 20,
+        maxRadius: 18,
         backgroundColor: AppColors.bgColor,
         child: Image.network(
           assets,
           width: 24,
           height: 20,
+          fit: BoxFit.cover,
         ),
       ),
     );
   }
-
 }

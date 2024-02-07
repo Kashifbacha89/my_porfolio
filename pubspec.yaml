@@ -38,6 +38,7 @@ dependencies:
   #general packages
   google_fonts: ^6.1.0
   animated_text_kit: ^4.2.2
+  animate_do:
 
 dev_dependencies:
   flutter_test:

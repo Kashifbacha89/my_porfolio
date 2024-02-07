@@ -7,4 +7,6 @@ class AppColors{
   static const  bodyTextColor = Color(0xFF8B8B8D);
   static const primaryColor=Colors.white;
   static const themeColor= Color(0xff007BA7);
+  static const aqua= Color(0xff0FFFFF);
+  static const lawGreen= Color(0xff0FFFFF);
 }
